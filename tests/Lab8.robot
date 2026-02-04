@@ -1,12 +1,28 @@
 *** Settings ***
-Library    SeleniumLibrary
+Documentation     Lab 8.5 - Robot Framework on Jenkins
+Library           BuiltIn
+
+*** Variables ***
+${PROJECT_NAME}    Software Engineering Lab 8
+${AUTHOR}          Pojthagorn Painaree
+
+*** Test Cases ***
+Check Jenkins Environment
+    [Documentation]    ตรวจสอบว่า Robot Framework สามารถรันบน Jenkins ได้
+    Log    Running ${PROJECT_NAME}
+    Log    Author: ${AUTHOR}
+    Should Be Equal    1    1
+
+Simple Calculation Test
+    [Documentation]    ทดสอบการคำนวณพื้นฐาน
+    ${result}=    Evaluate    2 + 3
+    Should Be Equal    ${result}    5
+
+String Validation Test
+    [Documentation]    ทดสอบการตรวจสอบข้อความ
+    ${text}=    Set Variable    Jenkins Robot Framework
+    Should Contain    ${text}    Robot
 
 *** Keywords ***
-Open Browser To Login Page
-    ${chrome_options}=    Evaluate    sys.modules['selenium.webdriver'].ChromeOptions()    sys
-    Call Method    ${chrome_options}    add_argument    --no-sandbox
-    Call Method    ${chrome_options}    add_argument    --disable-dev-shm-usage
-    Call Method    ${chrome_options}    add_argument    --headless
-    
-    Create Webdriver    Chrome    options=${chrome_options}
-    Go To    https://computing.kku.ac.th
+Show Test Summary
+    Log    All tests executed successfully
