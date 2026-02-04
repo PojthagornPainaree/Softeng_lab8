@@ -16,7 +16,7 @@ Check Jenkins Environment
 Simple Calculation Test
     [Documentation]    ทดสอบการคำนวณพื้นฐาน
     ${result}=    Evaluate    2 + 3
-    Should Be Equal    ${result}    5
+    Should Be Equal As Integers    ${result}    5
 
 String Validation Test
     [Documentation]    ทดสอบการตรวจสอบข้อความ
